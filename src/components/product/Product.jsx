@@ -18,7 +18,7 @@ function Product() {
 
       <p className="description">
         Comfortable and stylish running shoes perfect for daily wear
-        and sports activities.
+        and sports activities with comfort.
       </p>
 
       <button onClick={()=>dispatch(addItem(1))}>
