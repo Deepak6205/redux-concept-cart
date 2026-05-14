@@ -1,32 +1,54 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Product.css";
-import { addItem, removeItem } from "../../redux/slice";
+import { addItem } from "../../redux/slice";
+import { useEffect } from "react";
+import { fetchProducts } from "../../redux/productSlice";
 
 function Product() {
-    const dispatch=useDispatch();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
+
+  
+  const products = useSelector((state) => state.products.items);
+
+
+  const status = useSelector((state) => state.products.status);
+
+
+  const error = useSelector((state) => state.products.error);
+
+ 
+  if (status === "loading") {
+    return <h1>Loading...</h1>;
+  }
+
+
+  if (status === "failed") {
+    return <h1>{error}</h1>;
+  }
+
   return (
-    <div className="product-card">
+    <div className="products-container">
+      {products.length &&  products.map((product) => {
+        return (
+          <div className="product-card" key={product.id}>
+            <img src={product.thumbnail} alt={product.title} />
 
-      <img
-        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff"
-        alt="product"
-      />
+            <h2>{product.title}</h2>
 
-      <h2>Nike Shoes</h2>
+            <p className="price">${product.price}</p>
 
-      <p className="price">$120</p>
+            <p className="description">{product.description.substring(0,40)}...</p>
 
-      <p className="description">
-        Comfortable and stylish running shoes perfect for daily wear
-        and sports activities with comfort.
-      </p>
-
-      <button onClick={()=>dispatch(addItem(1))}>
-        Add To Cart
-      </button>
-      <button onClick={()=>dispatch(removeItem(1))}>
-        Remove from Cart
-      </button>
+            <button onClick={() => dispatch(addItem(product))}>
+              Add To Cart
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 }
