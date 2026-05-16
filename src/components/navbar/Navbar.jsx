@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Cart from "../cart/Cart";
 import "./Navbar.css";
 
@@ -10,13 +11,11 @@ function Navbar() {
       </div>
 
       <ul className="nav-links">
-        <li>Home</li>
-        <li>Products</li>
-        <li>About</li>
-        <li>Contact</li>
+        <Link to='/' style={{textDecoration:"none",color:'white'}}>Products</Link>
+        <Link to='/about' style={{textDecoration:"none",color:'white'}}>About</Link>
+        <Link to='/contact' style={{textDecoration:"none",color:'white'}}>Contact</Link>
       </ul>
-    <Cart/>
-      
+      <Cart/>
 
     </nav>
   );

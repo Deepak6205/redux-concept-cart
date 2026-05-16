@@ -64,6 +64,10 @@
     /* smooth button animation */
     transition: 0.3s;
 }
+.product-card .dsbl-btn{
+    background-color: #ff2832;
+    
+}
 
 /* button hover */
 .product-card button:hover{

@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./Product.css";
-import { addItem } from "../../redux/slice";
+import { addItem, removeItem } from "../../redux/slice";
 import { useEffect } from "react";
 import { fetchProducts } from "../../redux/productSlice";
 
 function Product() {
   const dispatch = useDispatch();
-
+  const cartSelector = useSelector((state)=>state.cart.items);
+      console.log(cartSelector)
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
@@ -43,9 +44,12 @@ function Product() {
 
             <p className="description">{product.description.substring(0,40)}...</p>
 
+            {cartSelector.find((cartItem) => cartItem.id == product.id)?<button className="dsbl-btn" onClick={()=>dispatch(removeItem(product))}>
+              remove from Cart
+            </button> :
             <button onClick={() => dispatch(addItem(product))}>
               Add To Cart
-            </button>
+            </button>}
           </div>
         );
       })}

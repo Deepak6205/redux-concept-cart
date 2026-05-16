@@ -23,9 +23,11 @@
     list-style: none;
 }
 
-.nav-links li{
+.nav-links{
     cursor: pointer;
     transition: 0.3s;
+    color: white;
+    
 }
 
 .nav-links li:hover{
