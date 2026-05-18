@@ -56,6 +56,28 @@
 
     margin-top: 10px;
 }
+.cart-actions{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cart-actions input{
+    width: 70px;
+    padding: 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    outline: none;
+
+    font-size: 15px;
+    text-align: center;
+}
+
+.cart-actions input:focus{
+    border-color: #333;
+}
 
 .cart-price span{
     font-size: 24px;
